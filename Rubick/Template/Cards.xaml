@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="Rubick.Template.Cards"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    mc:Ignorable="d">
+    <ContentView.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="TitleStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource FuturaHeavy}" />
+                <Setter Property="FontSize" Value="{StaticResource FontSize14}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="Margin" Value="0, 6, 0, 1" />
+            </Style>
+
+            <Style x:Key="SubTitleStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource FuturaMedium}" />
+                <Setter Property="FontSize" Value="{StaticResource FontSize12}" />
+                <Setter Property="TextColor" Value="{StaticResource SecondaryTextColor}" />
+                <Setter Property="Margin" Value="0, 1, 0, 2" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+
+        <Grid
+            Margin="0,2,0,2"
+            Padding="1"
+            BackgroundColor="{StaticResource WhiteColor}"
+            ColumnSpacing="2"
+            HeightRequest="250"
+            RowSpacing="3">
+            <Grid.RowDefinitions>
+                <!--  设置行高为100  -->
+                <RowDefinition Height="8*" />
+                <!--  减去行高100后，按照1/10高度（此网格定义了10）计算  -->
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <!--  按照1/5宽度（此网格定义了5）计算  -->
+                <ColumnDefinition Width="16*" />
+                <ColumnDefinition Width="300*" />
+                <ColumnDefinition Width="24*" />
+            </Grid.ColumnDefinitions>
+            <pancakeview:PancakeView
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                BorderThickness="0"
+                CornerRadius="0"
+                HasShadow="True">
+                <ffimageloading:CachedImage Aspect="AspectFill" Source="{Binding ImageUrl}" />
+
+            </pancakeview:PancakeView>
+            <Label
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="0,0,0,0"
+                Style="{StaticResource TitleStyle}"
+                Text="{Binding Title, StringFormat='{0:C0}'}" />
+
+            <StackLayout
+                Grid.Row="2"
+                Grid.Column="1"
+                Orientation="Horizontal">
+
+                <Label Style="{StaticResource SubTitleStyle}" Text="#" />
+
+
+                <Label
+                    HorizontalOptions="StartAndExpand"
+                    Style="{StaticResource SubTitleStyle}"
+                    Text="{Binding source}"
+                    WidthRequest="120" />
+                <Label
+                    FontFamily="{StaticResource MaterialFontFamily}"
+                    HorizontalOptions="EndAndExpand"
+                    Text="&#xe86f;"
+                    WidthRequest="15" />
+                <Label
+                    FontFamily="{StaticResource MaterialFontFamily}"
+                    HorizontalOptions="EndAndExpand"
+                    Text="&#xe653;"
+                    WidthRequest="15" />
+            </StackLayout>
+        </Grid>
+
+    </ContentView.Content>
+</ContentView>
